@@ -12,89 +12,9 @@ Cada grupo usa um computador. A criança clica na foto do produto (ou aperta o n
 - Pagamento **só em dinheiro**.
 
 ---
+https://gabrielrosas28.github.io/vendinha-web/#/inicio
 
-## 1. Rodar no seu computador (para desenvolver)
-
-Precisa do **Node.js 22 ou mais novo** (https://nodejs.org, versão LTS).
-
-Abra o terminal na pasta `vendinha-web` e rode:
-
-```bash
-npm install      # baixa as bibliotecas (só na primeira vez)
-npm run dev      # abre em http://localhost:5173/vendinha-web/
-npm test         # roda os testes (dinheiro, troco, estoque, senha e banco)
-```
-
-Outros comandos úteis:
-
-```bash
-npm run lint       # confere o estilo do código
-npm run typecheck  # confere os tipos (TypeScript)
-npm run build      # gera a versão final na pasta dist/
-npm run preview    # abre a versão final em http://localhost:4173/vendinha-web/
-```
-
-> No `npm run dev` o modo offline fica desligado. Para testar offline e a faixa "Tem versão nova", use `npm run build` e depois `npm run preview`.
-
----
-
-## 2. Publicar no GitHub Pages
-
-Faça isso **uma vez**:
-
-1. Entre em https://github.com/new e crie um repositório chamado **`vendinha-web`** (pode ser público ou privado; no plano grátis o Pages só funciona com repositório **público**).
-   - Se usar outro nome, troque o `BASE` em `vite.config.ts` para `'/NOME-DO-REPOSITORIO/'`.
-2. No terminal, dentro da pasta `vendinha-web`:
-   ```bash
-   git remote add origin https://github.com/USUARIO/vendinha-web.git
-   git push -u origin main
-   ```
-3. No GitHub, abra o repositório e vá em **Settings › Pages**. Em **Source**, escolha **GitHub Actions**.
-4. Vá na aba **Actions** e espere o "Publicar no GitHub Pages" ficar verde (uns 2 minutos). Se ele rodou antes de você ativar o Pages e deu erro, clique nele e em **Re-run all jobs**.
-5. O endereço final é:
-
-   **https://USUARIO.github.io/vendinha-web/**
-
-   (troque `USUARIO` pelo seu nome de usuário do GitHub).
-
-O workflow (`.github/workflows/deploy.yml`) roda **lint, testes e build** a cada push na `main`. Se algum teste falhar, nada é publicado.
-
----
-
-## 3. Preparar os 4 computadores
-
-Em **cada** computador (com internet, só desta vez):
-
-1. Abra o endereço `https://USUARIO.github.io/vendinha-web/` no **Chrome** ou no **Edge**.
-2. Clique em **Instalar app**: é o ícone de computador com uma setinha (⊕) no fim da barra de endereço. No Edge também fica em **⋯ › Aplicativos › Instalar este site como um aplicativo**.
-   - Instalado, o Vendinha ganha um ícone na área de trabalho e abre numa janela própria, sem barra de endereço.
-   - O app instalado também ajuda o navegador a **proteger os dados** (veja "Armazenamento" na Área do Organizador).
-3. Na primeira abertura, **crie a senha do Organizador** (4 a 8 números) e confirme. Use a mesma senha nos 4 computadores.
-4. **Teste sem internet**: desligue o Wi-Fi, feche e abra o Vendinha de novo, escolha um grupo, cadastre um item, abra o caixa e faça uma venda. Tem que funcionar normalmente.
-5. Depois do teste, entre na Área do Organizador e use **Zerar computador** para começar limpo.
-
-### ⚠️ Importante: os dados ficam no navegador
-
-As vendas ficam guardadas **dentro do navegador daquele computador**. Por isso:
-
-- **Não use aba anônima**: ao fechar, tudo some.
-- **Não limpe os dados de navegação** (histórico, cookies, "dados de sites") desses computadores.
-- Use **sempre o mesmo navegador e o mesmo usuário do Windows**. Chrome e Edge não enxergam os dados um do outro.
-- **Exporte o backup ao fim de cada turno** (Área do Organizador › Exportar backup) e guarde o arquivo `.json` num pendrive, no Drive ou mande por e-mail.
-
----
-
-## 4. Como atualizar
-
-1. Mude o código, rode `npm test` e dê **push** na `main`.
-2. Espere a aba **Actions** ficar verde.
-3. Nos computadores, quando tiverem internet, aparece a faixa **"Tem versão nova do Vendinha. Atualizar"** (o app confere ao abrir e a cada 30 minutos). Clique em **Atualizar**.
-   - Se houver uma venda pela metade, a faixa pede para **terminar a venda antes**. Nenhum pedido se perde.
-   - As vendas, os produtos e os relatórios **continuam** depois da atualização.
-
----
-
-## 5. Passo a passo do dia da feira
+## Passo a passo do dia da feira
 
 ### Antes da feira (organizador)
 
@@ -189,33 +109,7 @@ As dicas aparecem pequenas no rodapé das telas (somem em telas só de toque).
 
 ---
 
-## 6. Dica: deixar os alunos só no Vendinha
-
-- Use o **app instalado** (seção 3): abre em janela própria, sem barra de endereço.
-- Ou aperte **F11** no navegador para a **tela cheia**. Para sair, F11 de novo.
-- Se uma criança tentar fechar ou recarregar a página **com um pedido pela metade**, o navegador pergunta antes.
-
----
-
-## 7. Alternativa sem GitHub (rede local)
-
-Se não quiser usar o GitHub, em **cada computador** (precisa do Node.js instalado):
-
-```bash
-npm install
-npm run build:local
-npx serve dist -l 4173
-```
-
-e abra **http://localhost:4173/** no Chrome/Edge. O `localhost` também permite **instalar o app** e funciona offline depois da primeira abertura.
-
-> Use `build:local` (e não `build`): ele monta o site na raiz `/`. O `build` normal é para o endereço do GitHub Pages (`/vendinha-web/`).
->
-> O `serve` precisa estar rodando para abrir o Vendinha pela primeira vez. Depois de instalado, o app abre mesmo com o `serve` desligado.
-
----
-
-## 8. Decisões tomadas (onde a web é diferente do Android)
+## Decisões tomadas (onde a web é diferente do Android)
 
 1. **Foto opcional**: no Android era obrigatória. Aqui, sem foto, o card mostra a inicial do nome num quadrado com a cor do grupo. Foto pela **webcam** (`getUserMedia`, com prévia e botão Capturar) ou **arquivo**. Recorte quadrado no centro, no máximo 800 px, JPEG ~80% (reduz até ~250 KB), guardado como Blob no IndexedDB. A prévia da webcam mostra exatamente o quadrado que vira a foto.
 2. **Senha**: PBKDF2 com **SHA-256** pela Web Crypto API (120 mil iterações), salt aleatório de 16 bytes e comparação em tempo constante. No Android era SHA-1 só porque o Android 7 não tinha outro.
@@ -236,7 +130,7 @@ e abra **http://localhost:4173/** no Chrome/Edge. O `localhost` também permite 
 
 ---
 
-## 9. Organização do código
+## Organização do código
 
 ```
 vendinha-web/
@@ -258,7 +152,7 @@ vendinha-web/
 
 ---
 
-## 10. Créditos e licenças
+## Créditos e licenças
 
 - Fonte **Nunito**, © The Nunito Project Authors, sob a SIL Open Font License 1.1 (`licencas/OFL-Nunito.txt`, também em `public/fontes/`). Servida junto com o site, sem Google Fonts.
 - Marca **Feirinha do Empreendedorismo** © Colégio Santa Chiara.
